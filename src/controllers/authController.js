@@ -25,10 +25,10 @@ const oauthCallback = async (req, res) => {
       return res.redirect(`${process.env.FRONTEND_URL}/auth/error?error=no_code`);
     }
 
-    console.log('🔄 Exchanging code for tokens...');
+    console.log('Exchanging code for tokens...');
     const tokens = await getTokens(code);
 
-    console.log('📧 Fetching user email...');
+    console.log('Fetching user email...');
     const userInfoRes = await axios.get('https://www.googleapis.com/oauth2/v2/userinfo', {
       headers: { Authorization: `Bearer ${tokens.access_token}` }
     });
@@ -36,7 +36,7 @@ const oauthCallback = async (req, res) => {
 
     let channelInfo = null;
     try {
-      console.log('📺 Attempting to fetch YouTube channel info...');
+      console.log('Attempting to fetch YouTube channel info...');
       channelInfo = await getYoutubeChannelInfo(tokens.access_token);
       console.log('YouTube channel found');
     } catch (e) {
@@ -103,7 +103,6 @@ const oauthCallback = async (req, res) => {
         dbUser = createResp.data;
       } catch (dbError) {
         console.error('DB service error, fallback queue will handle it:', dbError.message);
-        dbUser = { userId: userData.email }; // fallback for JWT
       }
     }
 
