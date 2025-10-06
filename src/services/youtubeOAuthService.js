@@ -9,6 +9,7 @@ const REDIRECT_URI = process.env.YOUTUBE_REDIRECT_URI;
 const getAuthUrl = () => {
   const scope = [
     "https://www.googleapis.com/auth/youtube.readonly",
+    "https://www.googleapis.com/auth/youtube.force-ssl",
     "https://www.googleapis.com/auth/userinfo.profile",
     "https://www.googleapis.com/auth/userinfo.email"
 
