@@ -97,7 +97,7 @@ const oauthCallback = async (req, res) => {
         subscriberCount: userData.subscriberCount
       });
     } else {
-      console.log('Creating new user in DB...');
+      console.log('Creating new user in DB...', userData);
       try {
         const createResp = await axios.post(`${process.env.DB_OPS_URL}/user/create`, userData);
         dbUser = createResp.data;
